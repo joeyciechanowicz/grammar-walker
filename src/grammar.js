@@ -55,13 +55,13 @@ export class Grammar {
 }
 
 export class Production {
-  constructor(name, choices) {
+  constructor(name, rules) {
     this._name = name;
-    this._choices = choices;
+    this._rules = rules;
   }
 
   get rules() {
-    return this._choices;
+    return this._rules;
   }
 
   get name() {
@@ -112,6 +112,7 @@ export class Production {
           isInNonTerminal = false;
           currentSymbol += '>';
           currentRule.push(new NonTerminal(currentSymbol));
+          currentSymbol = '';
           break;
         case '"':
           if (isInTerminal) {
@@ -167,6 +168,6 @@ export class Terminal extends Symbol {
 export class NonTerminal extends Symbol {
 }
 
-const EOL = Production('<EOL>::="\r\n"');
+const EOL = Production.construct('<EOL>::="\r\n"');
 const LETTER = Production.construct('<LETTER>::="A"|"B"|"C"|"D"|"E"|"F"|"G"|"H"|"I"|"J"|"K"|"L"|"M"|"N"|"O"|"P"|"Q"|"R"|"S"|"T"|"U"|"V"|"W"|"X"|"Y"|"Z"|"a"|"b"|"c"|"d"|"e"|"f"|"g"|"h"|"i"|"j"|"k"|"l"|"m"|"n"|"o"|"p"|"q"|"r"|"s"|"t"|"u"|"v"|"w"|"x"|"y"|"z"');
 const NUMBER = Production.construct('<NUMBER>::="0"|"1"|"2"|"3"|"4"|"5"|"6"|"7"|"8"|"9"');

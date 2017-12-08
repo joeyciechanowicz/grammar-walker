@@ -113,4 +113,15 @@ describe('Grammar', () => {
 
     expect(Object.keys(grammar.productions).length).toEqual(4);
   });
+
+  it('can parse repeated statements correctly', () => {
+    const bnf = `
+        <root>::=<one><one><one>
+        <one>::="1"
+    `;
+    const grammar = Grammar.constructFromBNF(bnf);
+
+    expect(grammar.productions['<root>'].rules[0].symbols.length).toEqual(3);
+    expect(grammar.productions['<root>'].rules[0].symbols[2].value).toEqual('<one>');
+  });
 });
