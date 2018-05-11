@@ -1,8 +1,8 @@
-import {Grammar, NonTerminal, Terminal} from "./grammar";
+const {Grammar, NonTerminal, Terminal} = require("./grammar");
 
 const defaultConfig = {};
 
-export class GrammarWalker {
+class GrammarWalker {
 
   constructor(grammar) {
     if (!(grammar instanceof Grammar)) {
@@ -48,3 +48,5 @@ export class GrammarWalker {
     return Math.floor(Math.random() * max);
   }
 }
+
+module.exports.GrammarWalker = GrammarWalker;

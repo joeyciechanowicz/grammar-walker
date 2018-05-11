@@ -1,4 +1,4 @@
-import {Grammar, NonTerminal, Terminal} from "./grammar";
+const {Grammar, NonTerminal, Terminal} = require("./grammar");
 
 
 describe('Grammar', () => {
@@ -123,5 +123,17 @@ describe('Grammar', () => {
 
     expect(grammar.productions['<root>'].rules[0].symbols.length).toEqual(3);
     expect(grammar.productions['<root>'].rules[0].symbols[2].value).toEqual('<one>');
+  });
+
+  it('can parse *', () => {
+    const bnf = `
+        <root>::=<one>*
+        <one>::="1"
+    `;
+    const grammar = Grammar.constructFromBNF(bnf);
+
+    expect(grammar.productions['<root>'].rules.length).toEqual(2);
+    expect(grammar.productions['<root>'].rules[0].symbols.length).toEqual(1)
+    expect(grammar.productions['<root>'].rules[2].symbols.length).toEqual(2)
   });
 });

@@ -1,5 +1,5 @@
-import {Grammar} from "./grammar";
-import {GrammarWalker} from "./grammar-walker";
+const {Grammar}  = require( "./grammar");
+const {GrammarWalker} = require("./grammar-walker");
 
 describe('GrammarWalker', () => {
 
@@ -75,5 +75,4 @@ describe('GrammarWalker', () => {
     expect(result.length).toEqual(2);
     expect(result).toEqual(expect.stringMatching(/1(1|2)/));
   });
-
 });

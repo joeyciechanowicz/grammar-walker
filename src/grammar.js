@@ -1,7 +1,7 @@
 const spacesRegex = /^\s*$/;
 const whiteSpaceRegex = /\s+/;
 
-export class Grammar {
+class Grammar {
 
   constructor(rootProductionName, productions) {
     this._rootProductionName = rootProductionName;
@@ -54,7 +54,7 @@ export class Grammar {
   }
 }
 
-export class Production {
+class Production {
   constructor(name, rules) {
     this._name = name;
     this._rules = rules;
@@ -92,7 +92,7 @@ export class Production {
     for (i = 0; i < symbols.length; i++) {
       switch (symbols[i]) {
         case '\\':
-          currentSymbol += symbols[i+1];
+          currentSymbol += symbols[i + 1];
           i += 2;
           break;
         case '|':
@@ -145,7 +145,7 @@ export class Production {
   }
 }
 
-export class Rule {
+class Rule {
   constructor(symbols) {
     this._symbols = symbols;
   }
@@ -155,19 +155,26 @@ export class Rule {
   }
 }
 
-export class Symbol {
+class Symbol {
   constructor(value) {
     this.value = value;
   }
 }
 
 // Characters
-export class Terminal extends Symbol {
+class Terminal extends Symbol {
 }
 
-export class NonTerminal extends Symbol {
+class NonTerminal extends Symbol {
 }
 
 const EOL = Production.construct('<EOL>::="\r\n"');
 const LETTER = Production.construct('<LETTER>::="A"|"B"|"C"|"D"|"E"|"F"|"G"|"H"|"I"|"J"|"K"|"L"|"M"|"N"|"O"|"P"|"Q"|"R"|"S"|"T"|"U"|"V"|"W"|"X"|"Y"|"Z"|"a"|"b"|"c"|"d"|"e"|"f"|"g"|"h"|"i"|"j"|"k"|"l"|"m"|"n"|"o"|"p"|"q"|"r"|"s"|"t"|"u"|"v"|"w"|"x"|"y"|"z"');
 const NUMBER = Production.construct('<NUMBER>::="0"|"1"|"2"|"3"|"4"|"5"|"6"|"7"|"8"|"9"');
+
+module.exports.Grammar = Grammar;
+module.exports.Production = Production;
+module.exports.Rule = Rule;
+module.exports.Symbol = Symbol;
+module.exports.Terminal = Terminal;
+module.exports.NonTerminal = NonTerminal;
